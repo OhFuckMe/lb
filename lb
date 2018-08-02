@@ -41,8 +41,8 @@ finalize() { \
 	url=$(cat $dir/blog/.drafts/$chosen | grep -o "<h2 id='\(.\)*'>" | cut -d "'" -f2)
 	title=$(cat $dir/blog/.drafts/$chosen | grep -o "<h2 id='\(.\)*h2>" |sed -e 's/<[^>]*>//g')
 	echo "AddDescription \"$title\" $chosen" >> $dir/blog/.htaccess
-	rssdate=$(date '+%%d.%m.%Y %H:%M:%S')
-	webdate=$(date '+%%d.%m.%Y %H:%M:%S')
+	rssdate=$(date '+%d.%m.%Y %H:%M:%S')
+	webdate=$(date '+%d.%m.%Y %H:%M:%S')
 	tmpdir=$(mktemp -d)
 	echo -e "\n<item>\n<title>$title</title>\n<guid>$website$blogfile#$url</guid>\n<pubDate>$rssdate</pubDate>\n<description><![CDATA[\n$(cat $dir/blog/.drafts/$chosen | awk 'a==1;/^$/{a=1}')\n]]></description>\n</item>\n"> $tmpdir/rss.xml
 	echo -e "\n<div class=\"entry\">\n$(cat $dir/blog/.drafts/$chosen)\n<small>$webdate</small>\n</div>\n" > $tmpdir/html.html
