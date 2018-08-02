@@ -7,6 +7,7 @@ website="https://lukesmith.xyz/"
 stylesheet="..\/style.css" # Characters should be escaped for this variable.
 author="<a href=\"$website\">Luke Smith<\/a>"
 dir=$(pwd)
+editor="nano"
 
 # See other variables defined later, such as `header` and `webdate` for more customizability.
 
@@ -33,7 +34,7 @@ getTitle() { \
 
 postNew() { \
 	mkdir -p $dir/blog/.drafts
-	echo -e "<h2 id='$url'>$title</h2>\n<small>[<a href=\"$blogfile#$url\">link</a>&mdash;<a href=\"blog/$url.html\">standalone</a>]</small>\n\n<++>" >> $dir/blog/.drafts/$url.html && $EDITOR $dir/blog/.drafts/$url.html ;}
+	echo -e "<h2 id='$url'>$title</h2>\n<small>[<a href=\"$blogfile#$url\">link</a>&mdash;<a href=\"blog/$url.html\">standalone</a>]</small>\n\n<++>" >> $dir/blog/.drafts/$url.html && $editor $dir/blog/.drafts/$url.html ;}
 
 finalize() { \
 	listandReturn $dir/blog/.drafts finalize
